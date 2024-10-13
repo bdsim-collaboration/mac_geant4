@@ -1,0 +1,48 @@
+name: build mac geant4
+
+on:
+  push:
+    branches:
+      - main
+      - "releases/**"
+  pull_request:
+  release:
+
+
+jobs:
+  build-geant4:
+    name: Build geant4
+    runs-on ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        geant4-version: ["v10.7.4", "v11.0.4", "v11.1.3", "v11.2.2"]
+        os: [macOS-13, macOS-14]
+
+     steps:
+      - uses: actions/checkout@v4       
+
+      - name: Install brew dependencies on MacOS
+        if: runner.os == 'macOS'
+        run: .github/bin/install-deps-macos.sh
+
+      - name: Get number of CPU cores
+        uses: SimenB/github-actions-cpu-cores@v2
+        id: cpu-cores
+
+      - name: Build Geant4
+        shell: bash
+        run: |
+          git clone https://gitlab.cern.ch/geant4/geant4.git 
+          cd geant4 
+          git checkout ${{ matrix.geant4-version }} 
+          cd ../
+          mkdir geant4-build
+	  mkdir geant4-${{ matrix.geant4-version }}
+          cd geant4-build 
+          cmake -DCMAKE_INSTALL_PREFIX=../geant4-${{ matrix.geant4-version }} ../geant4 -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_GDML=ON -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_SYSTEM_CLHEP=ON -DGEANT4_USE_RAYTRACER_X11=ON
+          make -j${{ steps.cpu-cores.outputs.count }} 
+          make install
+	  cd ../
+	  tar zcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
