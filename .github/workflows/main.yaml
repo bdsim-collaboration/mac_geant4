@@ -12,7 +12,7 @@ on:
 jobs:
   build-geant4:
     name: Build geant4
-    runs-on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
     strategy:
       fail-fast: false
