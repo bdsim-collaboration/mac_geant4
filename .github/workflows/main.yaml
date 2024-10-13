@@ -33,7 +33,7 @@ jobs:
 
       - name: Build Geant4
         shell: bash
-        run:|
+        run: |
           git clone https://gitlab.cern.ch/geant4/geant4.git 
           cd geant4 
           git checkout ${{ matrix.geant4-version }} 
