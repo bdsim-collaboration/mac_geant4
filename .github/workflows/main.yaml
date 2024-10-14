@@ -40,7 +40,7 @@ jobs:
           make -j${{ steps.cpu-cores.outputs.count }} 
           make install
           cd ../
-          tar zcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
+          tar vzcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
 
       - name: Upload macos artifact
         uses: actions/upload-artifact@v4
