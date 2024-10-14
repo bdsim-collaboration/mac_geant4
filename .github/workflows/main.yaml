@@ -13,6 +13,7 @@ jobs:
       contents: write
       pull-requests: write
       repository-projects: write
+      checks: write
 
     strategy:
       fail-fast: false
