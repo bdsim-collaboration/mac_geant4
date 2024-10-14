@@ -1,8 +1,9 @@
 name: build mac geant4
 
 on:
-  release:
-
+  push:
+    tags:
+    - 'v*'
 
 jobs:
   build-geant4:
@@ -42,10 +43,23 @@ jobs:
           cd ../
           tar vzcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
 
-      - name: Upload macos artifact to release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            geant4-${{ matrix.geant4-version }}.tgz
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./geant4-${{ matrix.geant4-version }}.tgz
+          asset_name: geant4-${{ matrix.geant4-version }}.tgz
