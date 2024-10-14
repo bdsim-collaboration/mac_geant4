@@ -30,18 +30,20 @@ jobs:
       - name: Build Geant4
         shell: bash
         run: |
+          mkdir geant4-${{ matrix.geant4-version }}
+          tar vzcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
 #          git clone https://gitlab.cern.ch/geant4/geant4.git
 #          cd geant4
 #          git checkout ${{ matrix.geant4-version }}
 #          cd ../
 #          mkdir geant4-build
-          mkdir geant4-${{ matrix.geant4-version }}
+#          mkdir geant4-${{ matrix.geant4-version }}
 #          cd geant4-build 
 #          cmake -DCMAKE_INSTALL_PREFIX=../geant4-${{ matrix.geant4-version }} ../geant4 -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_GDML=ON -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_SYSTEM_CLHEP=ON -DGEANT4_USE_RAYTRACER_X11=ON
 #          make -j${{ steps.cpu-cores.outputs.count }} 
 #          make install
 #          cd ../
-          tar vzcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
+#          tar vzcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
 
       - name: Create Release
         id: create_release
