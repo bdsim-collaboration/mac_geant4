@@ -36,7 +36,7 @@ jobs:
         shell: bash
         run: |
           mkdir geant4-${{ matrix.geant4-version }}
-          tar vzcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
+          tar vzcf geant4-{{ matrix.os }}-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
 #          git clone https://gitlab.cern.ch/geant4/geant4.git
 #          cd geant4
 #          git checkout ${{ matrix.geant4-version }}
@@ -48,7 +48,7 @@ jobs:
 #          make -j${{ steps.cpu-cores.outputs.count }} 
 #          make install
 #          cd ../
-#          tar vzcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
+#          tar vzcf geant4-{{ matrix.os }}-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
 
       - name: Create Release
         id: create_release
@@ -59,15 +59,5 @@ jobs:
           draft: false
           prerelease: false
           allowUpdates: true
-          artifacts: ./geant4-${{ matrix.geant4-version }}.tgz
+          artifacts: ./geant4-{{ matrix.os }}-${{ matrix.geant4-version }}.tgz
 
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./geant4-${{ matrix.geant4-version }}.tgz
-          asset_name: geant4-${{ matrix.geant4-version }}.tgz
-          asset_content_type: application/gzip
