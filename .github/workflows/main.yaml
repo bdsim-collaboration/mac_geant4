@@ -9,6 +9,10 @@ jobs:
   build-geant4:
     name: Build geant4
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
 
     strategy:
       fail-fast: false
