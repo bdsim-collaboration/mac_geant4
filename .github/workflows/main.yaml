@@ -42,8 +42,10 @@ jobs:
           cd ../
           tar vzcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
 
-      - name: Upload macos artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload macos artifact to release
+        uses: softprops/action-gh-release@v1
         with:
-          name: ${{ matrix.os }}_${{ matrix.geant4-version }}
-          path: geant4-${{ matrix.geant4-version }}.tgz
+          files: |
+            geant4-${{ matrix.geant4-version }}.tgz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
