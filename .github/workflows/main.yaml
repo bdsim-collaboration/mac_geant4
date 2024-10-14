@@ -67,6 +67,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./geant4-${{ matrix.geant4-version }}.tgz
+          asset_path: ./geant4-${{ matrix.os }}-${{ matrix.geant4-version }}.tgz
           asset_name: geant4-${{ matrix.os }}-${{ matrix.geant4-version }}.tgz
           asset_content_type: application/gzip
