@@ -59,6 +59,7 @@ jobs:
           draft: false
           prerelease: false
           allowUpdates: true
+          artifacts: ./geant4-${{ matrix.geant4-version }}.tgz
 
       - name: Upload Release Asset
         id: upload-release-asset
