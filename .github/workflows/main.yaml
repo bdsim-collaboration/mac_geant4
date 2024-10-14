@@ -1,11 +1,6 @@
 name: build mac geant4
 
 on:
-  push:
-    branches:
-      - main
-      - "releases/**"
-  pull_request:
   release:
 
 
@@ -47,3 +42,8 @@ jobs:
           cd ../
           tar zcf geant4-${{ matrix.geant4-version }}.tgz geant4-${{ matrix.geant4-version }}
 
+      - name: Upload macos artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}_${{ matrix.geant4-version }}
+          path: geant4-${{ matrix.geant4-version }}.tgzx
