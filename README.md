@@ -8,6 +8,5 @@
  * Update `.github/workflows/main.yaml`
  * Tag 
  * Push (inc tag)
- * Create release to trigger build and artifact creation 
 
-Workflows run on tag and will create a release and upload artifacts
+Workflows run on push and will create a release and upload artifacts
