@@ -1,3 +1,3 @@
 #!/bin/bash
 
-brew install clhep root bison xerces-ck 
+brew install clhep root bison xerces-c
