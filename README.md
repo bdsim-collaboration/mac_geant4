@@ -9,4 +9,4 @@
  * Tag 
  * Push (inc tag)
 
-Workflows run on push and will create a release and upload artifacts
+Workflows run on tag-push and will create a release and upload artifacts
