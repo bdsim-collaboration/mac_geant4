@@ -2,7 +2,7 @@
 
 ## Builds 
  * Geant4 (4.10.7, 4.11.0, 4.11.1, 4.11.2, 4.11.3)
- * Apple and Intel silicon (macOS-13, macOS-14, macOS-15)
+ * Apple and Intel silicon (macOS-14, macOS-15, macOS-15-intel)
 
 ## Usage
  * Update `.github/workflows/main.yaml`
