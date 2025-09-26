@@ -40,9 +40,20 @@ jobs:
           git checkout ${{ matrix.geant4-version }}
 
           if [ "${{matrix.geant4-version}}" == "v10.7.4" ]; then
-             git apply $GITHUB_WORKSPACE/.github/patches/geant_v4.10.4.patch
+             git apply $GITHUB_WORKSPACE/.github/patches/geant4_v10.7.4.patch
           fi
 
+          if [ "${{matrix.geant4-version}}" == "v11.0.4" ]; then
+             git apply $GITHUB_WORKSPACE/.github/patches/geant4_v11.0.4.patch
+          fi
+
+          if [ "${{matrix.geant4-version}}" == "v11.1.3" ]; then
+             git apply $GITHUB_WORKSPACE/.github/patches/geant4_v11.1.3.patch
+          fi
+
+          if [ "${{matrix.geant4-version}}" == "v11.2.2" ]; then
+             git apply $GITHUB_WORKSPACE/.github/patches/geant4_v11.2.2.patch
+          fi
           cd ../
 
           mkdir geant4-build
