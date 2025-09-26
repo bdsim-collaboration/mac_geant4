@@ -38,11 +38,12 @@ jobs:
           git clone https://gitlab.cern.ch/geant4/geant4.git
           cd geant4
           git checkout ${{ matrix.geant4-version }}
-          cd ../
 
           if [ "${{matrix.geant4-version}}" == "v10.7.4" ]; then
              git apply $GITHUB_WORKSPACE/.github/patches/geant_v4.10.4.patch
           fi
+
+          cd ../
 
           mkdir geant4-build
           mkdir geant4-${{ matrix.geant4-version }}
