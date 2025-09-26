@@ -41,7 +41,7 @@ jobs:
           cd ../
 
           if [ "${{matrix.geant4-version}}" == "v10.7.4" ]; then
-             patch -p1 < $GITHUB_WORKSPACE/geant_v4.10.4.patch
+             patch -p1 < $GITHUB_WORKSPACE/patches/geant_v4.10.4.patch
           fi
 
           mkdir geant4-build
