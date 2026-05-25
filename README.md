@@ -10,4 +10,3 @@
  * Push (inc tag)
  * Create release
 
-Workflows run on tag-push and will create a release and upload artifacts
