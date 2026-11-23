@@ -35,7 +35,7 @@ jobs:
       - name: Build Geant4
         shell: bash
         run: |
-          git clone -b ${{ geant4-version }}-bdsim --single-branch https://github.com/bdsim-collaboration/geant4.git
+          git clone -b ${{ matrix.geant4-version }}-bdsim --single-branch https://github.com/bdsim-collaboration/geant4.git
 
           mkdir geant4-build
           mkdir geant4-${{ matrix.geant4-version }}
